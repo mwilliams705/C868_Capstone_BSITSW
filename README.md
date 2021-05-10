@@ -1,2 +1,2 @@
-# C868_Capstone_BSITSW
-WGU C868 Capstone Project
+# C195_SCHEDULING_APP_MICHAEL_WILLIAMS
+Scheduling App C195-WGU
