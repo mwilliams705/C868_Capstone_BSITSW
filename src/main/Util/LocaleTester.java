@@ -25,9 +25,4 @@ public class LocaleTester {
 
         }
     }
-
-    public static void setLocaleAndTest(Locale locale){
-        Locale.setDefault(locale);
-        test();
-    }
 }

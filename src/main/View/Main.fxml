@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -15,7 +17,7 @@
 
 <AnchorPane maxHeight="600.0" maxWidth="1100.0" minHeight="600.0" minWidth="1100.0" prefHeight="600.0" prefWidth="1100.0" style="-fx-background-color: #333;" stylesheets="@moderna-dark.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.MainController">
    <children>
-      <Label fx:id="currentUserLbl" layoutX="77.0" layoutY="14.0" text="(no user)" textFill="#58e12f">
+      <Label fx:id="currentUserLbl" layoutX="535.0" layoutY="15.0" text="(no user)" textFill="#58e12f">
          <font>
             <Font size="24.0" />
          </font>
@@ -73,23 +75,19 @@
                               <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                       <children>
-                                          <ScrollPane prefHeight="527.0">
-                                             <content>
-                                                <TableView fx:id="appt_all_table" prefHeight="1000.0" prefWidth="1075.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="all_appt_id" prefWidth="70.0" resizable="false" text="Appt. ID" />
-                                                        <TableColumn fx:id="all_title" prefWidth="75.0" resizable="false" text="Title" />
-                                                        <TableColumn fx:id="all_desc" prefWidth="230.0" resizable="false" text="Description" />
-                                                        <TableColumn fx:id="all_location" minWidth="0.0" prefWidth="94.0" resizable="false" text="Location" />
-                                                        <TableColumn fx:id="all_contact" prefWidth="124.0" resizable="false" text="Contact" />
-                                                        <TableColumn fx:id="all_type" prefWidth="89.0" resizable="false" text="Type" />
-                                                        <TableColumn fx:id="all_start" prefWidth="150.0" text="Start" />
-                                                        <TableColumn fx:id="all_end" prefWidth="150.0" text="End" />
-                                                        <TableColumn fx:id="all_customer_id" prefWidth="90.0" text="Customer ID" />
-                                                    </columns>
-                                                </TableView>
-                                             </content>
-                                          </ScrollPane>
+                                          <TableView fx:id="appt_all_table" prefHeight="1000.0" prefWidth="1075.0">
+                                              <columns>
+                                                  <TableColumn fx:id="all_appt_id" prefWidth="70.0" resizable="false" text="Appt. ID" />
+                                                  <TableColumn fx:id="all_title" prefWidth="75.0" resizable="false" text="Title" />
+                                                  <TableColumn fx:id="all_desc" prefWidth="230.0" resizable="false" text="Description" />
+                                                  <TableColumn fx:id="all_location" minWidth="0.0" prefWidth="94.0" resizable="false" text="Location" />
+                                                  <TableColumn fx:id="all_contact" prefWidth="124.0" resizable="false" text="Contact" />
+                                                  <TableColumn fx:id="all_type" prefWidth="89.0" resizable="false" text="Type" />
+                                                  <TableColumn fx:id="all_start" prefWidth="150.0" text="Start" />
+                                                  <TableColumn fx:id="all_end" prefWidth="150.0" text="End" />
+                                                  <TableColumn fx:id="all_customer_id" prefWidth="90.0" text="Customer ID" />
+                                              </columns>
+                                          </TableView>
                                       </children>
                                   </AnchorPane>
                               </content>
@@ -161,11 +159,11 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab closable="false" text="Contacts">
+            <Tab closable="false" text="Attorneys">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="contacts_table" prefHeight="521.0" prefWidth="1100.0">
+                        <TableView fx:id="contacts_table" editable="true" prefHeight="521.0" prefWidth="1100.0" tableMenuButtonVisible="true">
                            <columns>
                               <TableColumn fx:id="contact_id" prefWidth="75.0" resizable="false" text="ID" />
                               <TableColumn fx:id="contact_name" prefWidth="225.0" text="Name" />
@@ -192,11 +190,21 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Label layoutX="14.0" layoutY="14.0" text="User: " textFill="#e8e8e8">
+      <Label layoutX="472.0" layoutY="15.0" text="User: " textFill="#e8e8e8">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@DuckLaw.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="signOutBtn" layoutX="992.0" layoutY="13.0" mnemonicParsing="false" onAction="#signout" text="Sign Out">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
 
    </children>
 </AnchorPane>

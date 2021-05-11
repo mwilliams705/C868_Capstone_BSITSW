@@ -91,6 +91,7 @@ public class MainController implements Initializable {
 
     private static Customer modifyCustomer;
     private static Appointment modifyAppointment;
+    public Button signOutBtn;
 
 
     @Override
@@ -303,5 +304,8 @@ public class MainController implements Initializable {
     }
 
 
+    public void signout(ActionEvent actionEvent) throws IOException {
+        GeneralController.changePage(actionEvent,"DuckLawLoginForm");
 
+    }
 }
