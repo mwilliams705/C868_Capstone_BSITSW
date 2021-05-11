@@ -215,6 +215,72 @@ return null;
         return allCustomers;
     }
 
+    public static ObservableList<Customer> getCustomersByName(String name){
+        String getCustomerStatement = "SELECT Customer_ID,Customer_Name,Address,Postal_Code,Phone, division_id FROM customers where lower(Customer_Name) like(?)";
+        Customer customerResult;
+        ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+        try {
+            DBQuery.setPreparedStatement(DBConnector.getConnection(),getCustomerStatement);
+            PreparedStatement ps = DBQuery.getPreparedStatement();
+            ps.setString(1,name);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+
+            while (rs.next()){
+                customerResult = new Customer(
+                        rs.getInt("Customer_Id"),
+                        rs.getString("Customer_Name"),
+                        rs.getString("Address"),
+                        rs.getString("Postal_Code"),
+                        rs.getString("Phone"),
+                        rs.getInt("Division_ID")
+                );
+                allCustomers.add(customerResult);
+            }
+
+
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null;
+        }
+        return allCustomers;
+    }
+
+    public static ObservableList<Customer> getCustomersByPhone(String phone){
+        String getCustomerStatement = "SELECT Customer_ID,Customer_Name,Address,Postal_Code,Phone, division_id FROM customers where phone like(?)";
+        Customer customerResult;
+        ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+        try {
+            DBQuery.setPreparedStatement(DBConnector.getConnection(),getCustomerStatement);
+            PreparedStatement ps = DBQuery.getPreparedStatement();
+            ps.setString(1,phone);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+
+
+            while (rs.next()){
+                customerResult = new Customer(
+                        rs.getInt("Customer_Id"),
+                        rs.getString("Customer_Name"),
+                        rs.getString("Address"),
+                        rs.getString("Postal_Code"),
+                        rs.getString("Phone"),
+                        rs.getInt("Division_ID")
+                );
+                allCustomers.add(customerResult);
+            }
+
+
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null;
+        }
+        return allCustomers;
+    }
+
 
 
 

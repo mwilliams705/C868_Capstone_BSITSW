@@ -11,3 +11,4 @@ class MathCTest {
         assertEquals(20,mathC.add(10,10));
     }
 }
+

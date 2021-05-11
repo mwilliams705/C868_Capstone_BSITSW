@@ -1,18 +1,11 @@
 package main.Controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
 import main.Controller.Util.GeneralController;
 import main.DAO.AppointmentDAO;
 import main.DAO.ContactDAO;
@@ -20,14 +13,10 @@ import main.DAO.CustomerDAO;
 import main.Model.Appointment;
 import main.Model.Contact;
 import main.Model.Customer;
-import main.Util.DBConnector;
-import main.Util.DBQuery;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -35,6 +24,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     public TabPane mainTabPane;
+    public TextField customerSearch;
 
 
     //    Customers Table
@@ -92,6 +82,7 @@ public class MainController implements Initializable {
     private static Customer modifyCustomer;
     private static Appointment modifyAppointment;
     public Button signOutBtn;
+    public TextField customerSearchField;
 
 
     @Override
@@ -117,6 +108,31 @@ public class MainController implements Initializable {
         customer_zipcode.setCellValueFactory(new PropertyValueFactory<>("customerZipcode"));
         customer_phone.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
         customer_division.setCellValueFactory(new PropertyValueFactory<>("customerDivisionText"));
+
+        customerSearchField.textProperty().addListener((observable,oldVal, newVal) -> {
+            filteredCustomerList.setPredicate(customer -> {
+                if (newVal==null || newVal.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newVal.toLowerCase(Locale.ROOT);
+
+                if (customer.getCustomerName().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
+                    return true;
+                }
+                if (customer.getCustomerPhone().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
+                    return true;
+                }
+                if (String.valueOf(customer.getCustomerId()).contains(lowerCaseFilter)){
+                    return true;
+                }
+                else return false;
+
+            });
+        });
+        SortedList<Customer> sortedData = new SortedList<>(filteredCustomerList);
+        sortedData.comparatorProperty().bind(customers_table.comparatorProperty());
+        customers_table.setItems(sortedData);
 
 
         FilteredList<Appointment> filteredWeeklyAppointmentsList = new FilteredList<>(Objects.requireNonNull(AppointmentDAO.getAllAppointmentsThisWeek()));
@@ -191,6 +207,7 @@ public class MainController implements Initializable {
         if (confirm.isPresent()&&confirm.get()==ButtonType.OK){
             CustomerDAO.deleteCustomer(modifyCustomer.getCustomerId());
             customers_table.setItems(CustomerDAO.getAllCustomersWithDivisionAndCountries());
+
         }
 
     }

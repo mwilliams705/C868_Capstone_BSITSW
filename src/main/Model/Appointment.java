@@ -171,15 +171,6 @@ public class Appointment {
         LocalDateTime apptStartToEST = TimeConverter.localToEST(this.apptStart.toLocalDateTime());
         LocalDateTime apptEndToEST = TimeConverter.localToEST(this.apptEnd.toLocalDateTime());
 
-        System.out.print("Local Start--");
-        System.out.println(apptStart.toLocalDateTime());
-        System.out.print("Local End----");
-        System.out.println(apptEnd.toLocalDateTime());
-        System.out.print("EST Start----");
-        System.out.println(apptStartToEST);
-        System.out.print("EST End------");
-        System.out.println(apptEndToEST);
-
 
 
         LocalDateTime midnightLocalDateTime = LocalDateTime.of(apptStartDate,LocalTime.MIDNIGHT);
