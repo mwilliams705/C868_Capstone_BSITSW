@@ -74,6 +74,56 @@
                   </AnchorPane>
             </content>
           </Tab>
+            <Tab closable="false" text="Cases">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane>
+                           <content>
+                              <TableView fx:id="cases_table" prefHeight="1000.0" prefWidth="1100.0">
+                                 <columns>
+                                    <TableColumn fx:id="customer_id1" prefWidth="54.0" text="ID" />
+                                    <TableColumn fx:id="customer_name1" prefWidth="192.0" text="Title" />
+                                    <TableColumn fx:id="customer_address1" prefWidth="289.0" text="Description" />
+                                    <TableColumn fx:id="customer_zipcode1" prefWidth="130.0" resizable="false" text="Incident Date" />
+                                    <TableColumn fx:id="customer_phone1" prefWidth="130.0" resizable="false" text="Intake Date" />
+                                    <TableColumn fx:id="customer_division1" minWidth="0.0" prefWidth="220.0" resizable="false" text="Opposing Person(s)/ Company" />
+                                    <TableColumn fx:id="customer_division11" prefWidth="82.0" resizable="false" text="Type" />
+                                 </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                        <HBox layoutY="475.0" prefHeight="50.0" prefWidth="1100.0" style="-fx-background-color: #333;">
+                           <children>
+                              <TextField fx:id="caseSearchField" promptText="Search Title or ID">
+                                 <HBox.margin>
+                                    <Insets left="15.0" top="2.0" />
+                                 </HBox.margin>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#addCustomer" prefWidth="100.0" text="Add">
+                                 <HBox.margin>
+                                    <Insets left="610.0" right="5.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#updateCustomer" prefWidth="100.0" text="Update">
+                                 <HBox.margin>
+                                    <Insets right="5.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#deleteCustomer" prefWidth="100.0" text="Delete">
+                                 <HBox.margin>
+                                    <Insets right="8.0" top="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
           <Tab closable="false" text="Appointments">
             <content>
               <AnchorPane>
@@ -90,7 +140,7 @@
                                                   <TableColumn fx:id="all_title" prefWidth="75.0" resizable="false" text="Title" />
                                                   <TableColumn fx:id="all_desc" prefWidth="230.0" resizable="false" text="Description" />
                                                   <TableColumn fx:id="all_location" minWidth="0.0" prefWidth="94.0" resizable="false" text="Location" />
-                                                  <TableColumn fx:id="all_contact" prefWidth="124.0" resizable="false" text="Contact" />
+                                                  <TableColumn fx:id="all_contact" prefWidth="124.0" resizable="false" text="Attorney" />
                                                   <TableColumn fx:id="all_type" prefWidth="89.0" resizable="false" text="Type" />
                                                   <TableColumn fx:id="all_start" prefWidth="150.0" text="Start" />
                                                   <TableColumn fx:id="all_end" prefWidth="150.0" text="End" />

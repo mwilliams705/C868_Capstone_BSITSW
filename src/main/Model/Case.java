@@ -9,14 +9,16 @@ public abstract class Case {
     private Timestamp incidentDate;
     private Timestamp intakeDate;
     private int caseCustomerId;
+    private int caseContactId;
 
-    public Case(int caseId, String caseTitle, String caseDescription, Timestamp incidentDate, Timestamp intakeDate, int caseCustomerId) {
+    public Case(int caseId, String caseTitle, String caseDescription, Timestamp incidentDate, Timestamp intakeDate, int caseCustomerId, int caseContactId) {
         this.caseId = caseId;
         this.caseTitle = caseTitle;
         this.caseDescription = caseDescription;
         this.incidentDate = incidentDate;
         this.intakeDate = intakeDate;
         this.caseCustomerId = caseCustomerId;
+        this.caseContactId = caseContactId;
     }
 
     public int getCaseId() {
@@ -65,6 +67,14 @@ public abstract class Case {
 
     public void setCaseCustomerId(int caseCustomerId) {
         this.caseCustomerId = caseCustomerId;
+    }
+
+    public int getCaseContactId() {
+        return caseContactId;
+    }
+
+    public void setCaseContactId(int caseContactId) {
+        this.caseContactId = caseContactId;
     }
 }
 

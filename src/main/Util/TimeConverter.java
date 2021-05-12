@@ -12,6 +12,5 @@ public class TimeConverter {
         ZonedDateTime estzdt = toZDT.withZoneSameInstant(ZoneId.of("America/New_York"));
         return estzdt.toLocalDateTime();
     }
-
-
+    
 }

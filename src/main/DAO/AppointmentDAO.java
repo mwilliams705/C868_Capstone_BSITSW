@@ -4,10 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.Controller.LoginController;
 import main.Model.Appointment;
-import main.Model.Customer;
 import main.Util.DBConnector;
 import main.Util.DBQuery;
-import main.Util.TimeConverter;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -115,6 +115,10 @@ public class GeneralController {
 
     }
 
+    public static void quack(){
+
+    }
+
 //    public static SelectionModel<Tab> MainTabGlobalSelectionModel(TabPane tabPane){
 //
 //    }
