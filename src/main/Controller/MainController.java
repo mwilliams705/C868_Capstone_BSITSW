@@ -7,24 +7,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import main.Controller.Util.GeneralController;
-import main.DAO.AppointmentDAO;
-import main.DAO.ContactDAO;
-import main.DAO.CustomerDAO;
-import main.Model.Appointment;
-import main.Model.Contact;
-import main.Model.Customer;
+import main.DAO.*;
+import main.Model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Filter;
 
 public class MainController implements Initializable {
 
     public TabPane mainTabPane;
-    public TextField customerSearch;
 
 
     //    Customers Table
@@ -60,6 +58,7 @@ public class MainController implements Initializable {
     public TableColumn<Appointment,String> month_end;
     public TableColumn<Appointment,Integer> month_customer_id;
 
+//    All Appointments
     public TableView<Appointment> appt_all_table;
     public TableColumn<Appointment,Integer> all_appt_id;
     public TableColumn<Appointment,String> all_title;
@@ -71,18 +70,43 @@ public class MainController implements Initializable {
     public TableColumn<Appointment,String> all_end;
     public TableColumn<Appointment,Integer> all_customer_id;
 
+    //    PI Case Table
+    public TableView<CasePersonalInjury> pi_cases_table;
+    public TableColumn<CasePersonalInjury,Integer> pi_case_id;
+    public TableColumn<CasePersonalInjury,String> pi_case_title;
+    public TableColumn<CasePersonalInjury,String> pi_case_desc;
+    public TableColumn<CasePersonalInjury, Date> pi_case_incident_date;
+    public TableColumn<CasePersonalInjury, Timestamp> pi_case_intake_date;
+    public TableColumn<CasePersonalInjury,String> pi_case_opposing_party;
 
-    public Label currentUserLbl;
+    //    WC Case Table
+    public TableView<CaseWorkersCompensation> wc_cases_table;
+    public TableColumn<CaseWorkersCompensation,Integer> wc_case_id;
+    public TableColumn<CaseWorkersCompensation,String> wc_case_title;
+    public TableColumn<CaseWorkersCompensation,String> wc_case_desc;
+    public TableColumn<CaseWorkersCompensation,Date> wc_case_incident_date;
+    public TableColumn<CaseWorkersCompensation,Timestamp> wc_case_intake_date;
+    public TableColumn<CaseWorkersCompensation,String> wc_case_opposing_company;
 
+//  Contact(ATTORNEY) Table
     public TableView<Contact> contacts_table;
     public TableColumn<Contact,Integer> contact_id;
     public TableColumn<Contact,String> contact_name;
     public TableColumn<Contact,String> contact_email;
 
+    public Label currentUserLbl;
+
+
+
     private static Customer modifyCustomer;
     private static Appointment modifyAppointment;
+    private static CaseWorkersCompensation modifyCaseWorkersCompensation;
+    private static CasePersonalInjury modifyCasePersonalInjury;
+
     public Button signOutBtn;
+
     public TextField customerSearchField;
+    public TextField caseSearchField;
 
 
     @Override
@@ -173,6 +197,23 @@ public class MainController implements Initializable {
         all_end.setCellValueFactory(new PropertyValueFactory<>("apptEnd"));
         all_customer_id.setCellValueFactory(new PropertyValueFactory<>("apptCustomerId"));
 
+        FilteredList<CasePersonalInjury> filteredPICaseList = new FilteredList<>(Objects.requireNonNull(PICaseDAO.getAllCases()));
+        pi_cases_table.setItems(filteredPICaseList);
+        pi_case_id.setCellValueFactory(new PropertyValueFactory<>("caseId"));
+        pi_case_title.setCellValueFactory(new PropertyValueFactory<>("caseTitle"));
+        pi_case_desc.setCellValueFactory(new PropertyValueFactory<>("caseDescription"));
+        pi_case_incident_date.setCellValueFactory(new PropertyValueFactory<>("incidentDate"));
+        pi_case_intake_date.setCellValueFactory(new PropertyValueFactory<>("intakeDate"));
+        pi_case_opposing_party.setCellValueFactory(new PropertyValueFactory<>("caseDefendantName"));
+
+        FilteredList<CaseWorkersCompensation> filteredWCCaseList = new FilteredList<>(Objects.requireNonNull(WCCaseDAO.getAllCases()));
+        wc_cases_table.setItems(filteredWCCaseList);
+        wc_case_id.setCellValueFactory(new PropertyValueFactory<>("caseId"));
+        wc_case_title.setCellValueFactory(new PropertyValueFactory<>("caseTitle"));
+        wc_case_desc.setCellValueFactory(new PropertyValueFactory<>("caseDescription"));
+        wc_case_incident_date.setCellValueFactory(new PropertyValueFactory<>("incidentDate"));
+        wc_case_intake_date.setCellValueFactory(new PropertyValueFactory<>("intakeDate"));
+        wc_case_opposing_company.setCellValueFactory(new PropertyValueFactory<>("caseCompanyName"));
 
         FilteredList<Contact> filteredContactList = new FilteredList<>(Objects.requireNonNull(ContactDAO.getAllContacts()));
         contacts_table.setItems(filteredContactList);
@@ -199,7 +240,7 @@ public class MainController implements Initializable {
 
     }
 
-    public void deleteCustomer(ActionEvent actionEvent) throws IOException {
+    public void deleteCustomer(ActionEvent actionEvent) {
         modifyCustomer = customers_table.getSelectionModel().getSelectedItem();
 
         Alert confirmDelete = GeneralController.alertUser(Alert.AlertType.CONFIRMATION,"Delete Customer","Continue Deleting Customer?:", modifyCustomer.getCustomerId()+" | "+modifyCustomer.getCustomerName());
@@ -228,14 +269,12 @@ public class MainController implements Initializable {
             GeneralController.addCloseableTabWithAppointmentFormViewAndMoveTo(mainTabPane,"Appointment for " +modifyAppointment.getApptCustomerId(),"AppointmentForm");
         }catch (NullPointerException n1){
             try {
-                modifyAppointment = appt_all_table.getSelectionModel().getSelectedItem();
                 modifyAppointment = appt_this_month_table.getSelectionModel().getSelectedItem();
-                System.out.println(modifyAppointment.getApptTitle());
+                GeneralController.addCloseableTabWithAppointmentFormViewAndMoveTo(mainTabPane,"Appointment for " +modifyAppointment.getApptCustomerId(),"AppointmentForm");
             }catch (NullPointerException n2){
                 try {
-                    modifyAppointment = appt_all_table.getSelectionModel().getSelectedItem();
                     modifyAppointment = appt_this_week_table.getSelectionModel().getSelectedItem();
-                    System.out.println(modifyAppointment.getApptTitle());
+                    GeneralController.addCloseableTabWithAppointmentFormViewAndMoveTo(mainTabPane,"Appointment for " +modifyAppointment.getApptCustomerId(),"AppointmentForm");
                 }catch (NullPointerException n3){
                     n3.printStackTrace();
                 }
@@ -243,7 +282,7 @@ public class MainController implements Initializable {
         }
     }
 
-    public void deleteAppointment(ActionEvent actionEvent) throws IOException {
+    public void deleteAppointment(ActionEvent actionEvent) {
 
         try {
             modifyAppointment = appt_all_table.getSelectionModel().getSelectedItem();
@@ -290,6 +329,68 @@ public class MainController implements Initializable {
 
     }
 
+
+
+//    ==================================================================================================================
+//    ==================Cases===========================================================================================
+//    ==================================================================================================================
+    public void addCase(ActionEvent actionEvent) throws IOException{
+        modifyCasePersonalInjury = null;
+        modifyCaseWorkersCompensation = null;
+        GeneralController.addCloseableTabWithCaseFormViewAndMoveTo(mainTabPane,"New Case", "CaseForm");
+
+    }
+
+
+    public void updateCase(ActionEvent actionEvent) throws IOException{
+        try {
+            modifyCaseWorkersCompensation = wc_cases_table.getSelectionModel().getSelectedItem();
+            modifyCasePersonalInjury = null;
+            GeneralController.addCloseableTabWithCaseFormViewAndMoveTo(mainTabPane,modifyCaseWorkersCompensation.getCaseTitle(),"CaseForm");
+        }catch (NullPointerException n){
+            try {
+                modifyCasePersonalInjury = pi_cases_table.getSelectionModel().getSelectedItem();
+                modifyCaseWorkersCompensation = null;
+                GeneralController.addCloseableTabWithCaseFormViewAndMoveTo(mainTabPane,modifyCasePersonalInjury.getCaseTitle(),"CaseForm");
+            }catch (NullPointerException n1){
+                Alert a = GeneralController.alertUser(Alert.AlertType.ERROR,"Error", "No Case Selected.", "Please choose a case from the table to proceed");
+                a.showAndWait();
+            }
+        }
+    }
+
+    public void deleteCase(ActionEvent actionEvent) {
+        try {
+            modifyCaseWorkersCompensation = wc_cases_table.getSelectionModel().getSelectedItem();
+            Alert confirmDelete = GeneralController.alertUser(Alert.AlertType.CONFIRMATION,"Delete Case","Continue Deleting WC Case?", modifyCaseWorkersCompensation.getCaseTitle());
+            Optional<ButtonType> confirm = confirmDelete.showAndWait();
+            if (confirm.isPresent()&&confirm.get()==ButtonType.OK){
+                WCCaseDAO.delete(modifyCaseWorkersCompensation.getCaseId());
+                wc_cases_table.setItems(WCCaseDAO.getAllCases());
+
+                Alert onDelete = GeneralController.alertUser(Alert.AlertType.INFORMATION,"Case Deleted", "Deletion Confirmed", modifyCaseWorkersCompensation.getCaseTitle());
+                onDelete.showAndWait();
+            }
+        }catch (NullPointerException n){
+            try {
+                modifyCasePersonalInjury = pi_cases_table.getSelectionModel().getSelectedItem();
+                Alert confirmDelete = GeneralController.alertUser(Alert.AlertType.CONFIRMATION,"Delete Case","Continue Deleting PI Case?", modifyCasePersonalInjury.getCaseTitle());
+                Optional<ButtonType> confirm = confirmDelete.showAndWait();
+                if (confirm.isPresent()&&confirm.get()==ButtonType.OK){
+                    PICaseDAO.delete(modifyCasePersonalInjury.getCaseId());
+                    pi_cases_table.setItems(PICaseDAO.getAllCases());
+
+                    Alert onDelete = GeneralController.alertUser(Alert.AlertType.INFORMATION,"Case Deleted", "Deletion Confirmed", modifyCasePersonalInjury.getCaseTitle());
+                    onDelete.showAndWait();
+                }
+            }catch (NullPointerException n1){
+                Alert onDelete = GeneralController.alertUser(Alert.AlertType.ERROR,"Error", "No Case Selected", "Select a case and try again");
+                onDelete.showAndWait();
+            }
+        }
+    }
+
+
 //    ==================================================================================================================
 //    ==================Getters & Setters===============================================================================
 //    ==================================================================================================================
@@ -297,16 +398,16 @@ public class MainController implements Initializable {
         return modifyCustomer;
     }
 
-    public static void setModifyCustomer(Customer modifyCustomer) {
-        MainController.modifyCustomer = modifyCustomer;
-    }
-
     public static Appointment getModifyAppointment() {
         return modifyAppointment;
     }
 
-    public static void setModifyAppointment(Appointment modifyAppointment) {
-        MainController.modifyAppointment = modifyAppointment;
+    public static CaseWorkersCompensation getModifyCaseWorkersCompensation() {
+        return modifyCaseWorkersCompensation;
+    }
+
+    public static CasePersonalInjury getModifyCasePersonalInjury() {
+        return modifyCasePersonalInjury;
     }
 
     public void openApptsByTypeReport(ActionEvent actionEvent) throws IOException {
@@ -325,4 +426,6 @@ public class MainController implements Initializable {
         GeneralController.changePage(actionEvent,"DuckLawLoginForm");
 
     }
+
+
 }

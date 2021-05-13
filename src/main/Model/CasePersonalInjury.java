@@ -7,8 +7,13 @@ import java.time.format.DateTimeFormatter;
 public class CasePersonalInjury extends Case{
     private String caseDefendantName;
 
-    public CasePersonalInjury(int caseId, String caseTitle, String caseDescription, Timestamp incidentDate, Timestamp intakeDate, int caseCustomerId, String caseDefendantName) {
-        super(caseId, caseTitle, caseDescription, incidentDate, intakeDate, caseCustomerId);
+    public CasePersonalInjury(int caseId, String caseTitle, String caseDescription, Date incidentDate, Timestamp intakeDate, int caseCustomerId, int caseContactId, String caseDefendantName) {
+        super(caseId, caseTitle, caseDescription, incidentDate, intakeDate, caseCustomerId, caseContactId);
+        this.caseDefendantName = caseDefendantName;
+    }
+
+    public CasePersonalInjury(String caseTitle, String caseDescription, Date incidentDate, int caseCustomerId, int caseContactId, String caseDefendantName) {
+        super(caseTitle, caseDescription, incidentDate, caseCustomerId, caseContactId);
         this.caseDefendantName = caseDefendantName;
     }
 
