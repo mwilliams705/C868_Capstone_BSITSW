@@ -176,3 +176,5 @@ Login Attempt [User: test | Date: 2021-05-13 | Timestamp: 2021-05-13 11:48:58.18
 Login Attempt [User: test | Date: 2021-05-13 | Timestamp: 2021-05-13 11:51:14.0553522 | Login Success]
 Login Attempt [User: wgu | Date: 2021-05-13 | Timestamp: 2021-05-13 12:03:15.6514767 | Login Success]
 Login Attempt [User: test | Date: 2021-05-13 | Timestamp: 2021-05-13 12:25:29.9859975 | Login Success]
+Login Attempt [User: test | Date: 2021-05-13 | Timestamp: 2021-05-13 21:20:02.19164 | Login Success]
+Login Attempt [User: test | Date: 2021-05-13 | Timestamp: 2021-05-13 22:18:54.871698 | Login Success]
