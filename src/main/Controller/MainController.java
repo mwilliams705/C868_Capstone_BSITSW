@@ -94,9 +94,8 @@ public class MainController implements Initializable {
     public TableColumn<Contact,String> contact_name;
     public TableColumn<Contact,String> contact_email;
 
+
     public Label currentUserLbl;
-
-
 
     private static Customer modifyCustomer;
     private static Appointment modifyAppointment;
@@ -133,30 +132,7 @@ public class MainController implements Initializable {
         customer_phone.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
         customer_division.setCellValueFactory(new PropertyValueFactory<>("customerDivisionText"));
 
-        customerSearchField.textProperty().addListener((observable,oldVal, newVal) -> {
-            filteredCustomerList.setPredicate(customer -> {
-                if (newVal==null || newVal.isEmpty()){
-                    return true;
-                }
 
-                String lowerCaseFilter = newVal.toLowerCase(Locale.ROOT);
-
-                if (customer.getCustomerName().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
-                    return true;
-                }
-                if (customer.getCustomerPhone().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
-                    return true;
-                }
-                if (String.valueOf(customer.getCustomerId()).contains(lowerCaseFilter)){
-                    return true;
-                }
-                else return false;
-
-            });
-        });
-        SortedList<Customer> sortedData = new SortedList<>(filteredCustomerList);
-        sortedData.comparatorProperty().bind(customers_table.comparatorProperty());
-        customers_table.setItems(sortedData);
 
 
         FilteredList<Appointment> filteredWeeklyAppointmentsList = new FilteredList<>(Objects.requireNonNull(AppointmentDAO.getAllAppointmentsThisWeek()));
@@ -220,6 +196,86 @@ public class MainController implements Initializable {
         contact_id.setCellValueFactory(new PropertyValueFactory<>("contactId"));
         contact_name.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         contact_email.setCellValueFactory(new PropertyValueFactory<>("contactEmail"));
+
+
+//    ==================================================================================================================
+//    ==================Search==========================================================================================
+//    ==================================================================================================================
+
+        //        Customer Search
+        customerSearchField.textProperty().addListener((observable,oldVal, newVal) -> {
+            filteredCustomerList.setPredicate(customer -> {
+                if (newVal==null || newVal.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newVal.toLowerCase(Locale.ROOT);
+
+                if (customer.getCustomerName().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
+                    return true;
+                }
+                if (customer.getCustomerPhone().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
+                    return true;
+                }
+                if (String.valueOf(customer.getCustomerId()).contains(lowerCaseFilter)){
+                    return true;
+                }
+                else return false;
+
+            });
+        });
+        SortedList<Customer> sortedData = new SortedList<>(filteredCustomerList);
+        sortedData.comparatorProperty().bind(customers_table.comparatorProperty());
+        customers_table.setItems(sortedData);
+
+//        Personal Injury Case Search
+        caseSearchField.textProperty().addListener((observable,oldVal, newVal) -> {
+            filteredPICaseList.setPredicate(casePersonalInjury -> {
+                if (newVal==null || newVal.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newVal.toLowerCase(Locale.ROOT);
+
+                if (casePersonalInjury.getCaseTitle().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
+                    return true;
+                }
+                if (String.valueOf(casePersonalInjury.getCaseId()).contains(lowerCaseFilter)){
+                    return true;
+                }
+
+                return false;
+
+            });
+        });
+        SortedList<CasePersonalInjury> sortedPIData = new SortedList<>(filteredPICaseList);
+        sortedPIData.comparatorProperty().bind(pi_cases_table.comparatorProperty());
+        pi_cases_table.setItems(sortedPIData);
+
+//        Workers Comp Case Search
+        caseSearchField.textProperty().addListener((observable,oldVal, newVal) -> {
+            filteredWCCaseList.setPredicate(caseWorkersCompensation -> {
+                if (newVal==null || newVal.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newVal.toLowerCase(Locale.ROOT);
+
+                if (caseWorkersCompensation.getCaseTitle().toLowerCase(Locale.ROOT).contains(lowerCaseFilter)){
+                    return true;
+                }
+                if (String.valueOf(caseWorkersCompensation.getCaseId()).contains(lowerCaseFilter)){
+                    return true;
+                }
+
+                return false;
+
+            });
+        });
+        SortedList<CaseWorkersCompensation> sortedWCData = new SortedList<>(filteredWCCaseList);
+        sortedWCData.comparatorProperty().bind(wc_cases_table.comparatorProperty());
+        wc_cases_table.setItems(sortedWCData);
+
     }
 
 
@@ -343,13 +399,16 @@ public class MainController implements Initializable {
 
 
     public void updateCase(ActionEvent actionEvent) throws IOException{
+
         try {
             modifyCaseWorkersCompensation = wc_cases_table.getSelectionModel().getSelectedItem();
+            System.out.println(modifyCaseWorkersCompensation.getCaseDescription());
             modifyCasePersonalInjury = null;
             GeneralController.addCloseableTabWithCaseFormViewAndMoveTo(mainTabPane,modifyCaseWorkersCompensation.getCaseTitle(),"CaseForm");
         }catch (NullPointerException n){
             try {
                 modifyCasePersonalInjury = pi_cases_table.getSelectionModel().getSelectedItem();
+                System.out.println(modifyCasePersonalInjury.getCaseDescription());
                 modifyCaseWorkersCompensation = null;
                 GeneralController.addCloseableTabWithCaseFormViewAndMoveTo(mainTabPane,modifyCasePersonalInjury.getCaseTitle(),"CaseForm");
             }catch (NullPointerException n1){
@@ -415,11 +474,18 @@ public class MainController implements Initializable {
     }
 
     public void openContactScheduleReport(ActionEvent actionEvent) throws IOException {
-        GeneralController.addCloseableTabWithReportFormViewAndMoveTo(mainTabPane,"Contact Schedules","ReportTwo");
+        GeneralController.addCloseableTabWithReportFormViewAndMoveTo(mainTabPane,"Attorney Schedules","ReportTwo");
+    }
+    /**
+     * Button action to open a new tab in the Main view tab pane with the 'Total Appointments by Type' report.
+     * @param actionEvent
+     * @throws IOException
+     */
+    public void OpenTotalApptsByCustomer(ActionEvent actionEvent) throws IOException {
+        GeneralController.addCloseableTabWithReportFormViewAndMoveTo(mainTabPane,"Total Appts. By Customer","ReportThree");
     }
 
-    public void OpenCustomReport(ActionEvent actionEvent) {
-    }
+
 
 
     public void signout(ActionEvent actionEvent) throws IOException {

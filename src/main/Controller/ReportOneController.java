@@ -42,10 +42,10 @@ public class ReportOneController implements Initializable {
         appointmentsByTypeBarChart.setTitle("Appointments By Type");
 
         XYChart.Series<String,Number> dataSeries1 = new XYChart.Series<>();
-        dataSeries1.setName("Physical");
+        dataSeries1.setName("Deposition");
 
         XYChart.Series<String,Number> dataSeries2 = new XYChart.Series<>();
-        dataSeries2.setName("Bloodwork");
+        dataSeries2.setName("Info Gathering");
         String getStatement = "select count(Title) as Count,Type,MONTHNAME(Start) as mn,MONTH(Start) as Month from appointments group by MONTH(Start),mn,Type order by Month;";
 
 
@@ -56,12 +56,12 @@ public class ReportOneController implements Initializable {
             ResultSet rs = ps.getResultSet();
             while (rs.next()){
 
-                if (rs.getString("Type").equals("Physical")){
+                if (rs.getString("Type").equals("Deposition")){
 
                     dataSeries1.getData().add(new XYChart.Data<>(rs.getString("mn"),rs.getInt("Count")));
 
                 }
-                if (rs.getString("Type").equals("Bloodwork")){
+                if (rs.getString("Type").equals("Info Gathering")){
 
                     dataSeries2.getData().add(new XYChart.Data<>(rs.getString("mn"),rs.getInt("Count")));
                 }

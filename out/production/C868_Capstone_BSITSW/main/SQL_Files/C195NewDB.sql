@@ -9,23 +9,33 @@
 -- questions mark.kinkead@wgu.edu
 -- 
 
-DELETE FROM appointments WHERE Appointment_ID < 10000;
+# DELETE FROM appointments WHERE Appointment_ID < 10000;
+delete from pi_cases where CASE_ID < 10000;
+delete from wc_cases where CASE_ID < 10000;
 DELETE FROM customers WHERE Customer_ID < 10000;
 DELETE FROM first_level_divisions where Division_ID < 10000;
 DELETE FROM countries where Country_ID < 10000;
 DELETE FROM users WHERE User_ID < 10000;
 DELETE FROM contacts where Contact_ID < 10000;
 
+
 -- users
 
 INSERT INTO users VALUES(1, 'test', 'test', NOW(), 'script', NOW(), 'script');
 INSERT INTO users VALUES(2, 'admin', 'admin', NOW(), 'script', NOW(), 'script');
+INSERT INTO users VALUES(3, 'wgu', 'wgu-admin-868-001221520', NOW(), 'script', NOW(), 'script');
+
 
 -- contacts
-
-INSERT INTO contacts VALUES(1,	'Anika Costa', 'acoasta@company.com');
-INSERT INTO contacts VALUES(2,	'Daniel Garcia',	'dgarcia@company.com');
-INSERT INTO contacts VALUES(3,	'Li Lee',	'llee@company.com');
+# delete from contacts;
+INSERT INTO contacts VALUES(1,	'Josh Holbrooks', 'josh.holbrooks@ducklaw.com');
+INSERT INTO contacts VALUES(2,	'Daniel Garcia',	'daniel.garcia@ducklaw.com');
+INSERT INTO contacts VALUES(3,	'Li Lee',	'li.lee@ducklaw.com');
+INSERT INTO contacts VALUES(4,	'Joan Newsom',	'joan.newsom@ducklaw.com');
+INSERT INTO contacts VALUES(5,	'Albert Crow',	'albert.crow@ducklaw.com');
+INSERT INTO contacts VALUES(6,	'Michael Williams',	'michael.williams@ducklaw.com');
+INSERT INTO contacts VALUES(7,	'Lyndsey Sinclair',	'lyndsey.sinclair@ducklaw.com');
+INSERT INTO contacts VALUES(8,	'Doug Foreman',	'doug.foreman@ducklaw.com');
 
 -- Counties
 
@@ -114,10 +124,17 @@ INSERT INTO customers VALUES(1, 'Daddy Warbucks', '1919 Boardwalk', '01291', '86
 INSERT INTO customers VALUES(2, 'Lady McAnderson', '2 Wonder Way', 'AF19B', '11-445-910-2135', NOW(), 'script', NOW(), 'script', 103);
 INSERT INTO customers VALUES(3, 'Dudley Do-Right', '48 Horse Manor ', '28198', '874-916-2671', NOW(), 'script', NOW(), 'script', 60);
 
-INSERT INTO customers VALUES(15, 'Jason Statham', '209 Beverly Hills Drive', '90210', '869-908-1875', NOW(), 'script', NOW(), 'script', 29);
-INSERT INTO customers VALUES(16, 'Jack Johnson', '2 Yellow Hat Road', '20252', '898-007-3623', NOW(), 'script', NOW(), 'script', 32);
-INSERT INTO customers VALUES(17, 'William Robinson', '1541 Summer Street', '28009', '874-916-9090', NOW(), 'script', NOW(), 'script', 16);
+INSERT INTO customers VALUES(4, 'Jason Statham', '209 Beverly Hills Drive', '90210', '869-908-1875', NOW(), 'script', NOW(), 'script', 29);
+INSERT INTO customers VALUES(5, 'Jack Johnson', '2 Yellow Hat Road', '20252', '898-007-3623', NOW(), 'script', NOW(), 'script', 32);
+INSERT INTO customers VALUES(6, 'William Robinson', '1541 Summer Street', '28009', '874-916-9090', NOW(), 'script', NOW(), 'script', 16);
 -- Appointments
 
-INSERT INTO appointments VALUES(1, 'title', 'description', 'location', 'Planning Session', '2020-05-28 12:00:00', '2020-05-28 13:00:00', NOW(), 'script', NOW(), 'script', 1, 1, 3);
-INSERT INTO appointments VALUES(2, 'title', 'description', 'location', 'De-Briefing', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);
+INSERT INTO appointments VALUES(1, 'title', 'description', 'location', 'Deposition', '2020-05-28 12:00:00', '2020-05-28 13:00:00', NOW(), 'script', NOW(), 'script', 1, 1, 3);
+INSERT INTO appointments VALUES(2, 'title', 'description', 'location', 'Info Gathering', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);
+INSERT INTO appointments VALUES(3, 'title', 'description', 'location', 'Deposition', '2020-05-28 12:00:00', '2020-05-28 13:00:00', NOW(), 'script', NOW(), 'script', 1, 1, 3);
+INSERT INTO appointments VALUES(4, 'title', 'description', 'location', 'Info Gathering', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);
+INSERT INTO appointments VALUES(5, 'title', 'description', 'location', 'Deposition', '2020-05-28 12:00:00', '2020-05-28 13:00:00', NOW(), 'script', NOW(), 'script', 1, 1, 3);
+INSERT INTO appointments VALUES(6, 'title', 'description', 'location', 'Info Gathering', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);
+INSERT INTO appointments VALUES(7, 'title', 'description', 'location', 'Info Gathering', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);
+INSERT INTO appointments VALUES(8, 'title', 'description', 'location', 'Info Gathering', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);
+INSERT INTO appointments VALUES(9, 'title', 'description', 'location', 'Info Gathering', '2020-05-29 12:00:00', '2020-05-29 13:00:00', NOW(), 'script', NOW(), 'script', 2, 2, 2);

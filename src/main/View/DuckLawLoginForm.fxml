@@ -50,7 +50,7 @@
                               <Insets left="24.0" top="24.0" />
                            </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="passwordTextfield" layoutX="10.0" layoutY="45.0">
+                        <PasswordField fx:id="passwordTextfield" layoutX="10.0" layoutY="45.0" onAction="#login">
                            <VBox.margin>
                               <Insets left="16.0" right="16.0" top="8.0" />
                            </VBox.margin>

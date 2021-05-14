@@ -6,26 +6,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane stylesheets="@moderna-dark.css" prefHeight="521.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.ReportTwoController">
+<AnchorPane prefHeight="521.0" prefWidth="1100.0" stylesheets="@moderna-dark.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller.ReportTwoController">
    <children>
       <TabPane prefHeight="521.0">
          <tabs>
-            <Tab  closable="false" text="Anika Costa">
+            <Tab closable="false" text="Josh Holbrooks">
                <content>
-                  <TableView fx:id="AC_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
+                  <TableView fx:id="JH_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
                     <columns>
-                      <TableColumn fx:id="ACcontactName" prefWidth="150.0" text="Contact Name" />
-                      <TableColumn fx:id="ACappointmentId" prefWidth="100.0" text="Appointment ID" />
-                        <TableColumn fx:id="ACappointmentTitle" prefWidth="150.0" text="Title" />
-                        <TableColumn fx:id="ACappointmentDesc" prefWidth="225.0" text="Description" />
-                        <TableColumn fx:id="ACappointmentStart" prefWidth="200.0" text="Start" />
-                        <TableColumn fx:id="ACappointmentEnd" prefWidth="200.0" text="End" />
-                        <TableColumn fx:id="ACcustomerId" prefWidth="75.0" text="Customer ID" />
+                      <TableColumn fx:id="JHcontactName" prefWidth="150.0" text="Contact Name" />
+                      <TableColumn fx:id="JHappointmentId" prefWidth="100.0" text="Appointment ID" />
+                        <TableColumn fx:id="JHappointmentTitle" prefWidth="150.0" text="Title" />
+                        <TableColumn fx:id="JHappointmentDesc" prefWidth="225.0" text="Description" />
+                        <TableColumn fx:id="JHappointmentStart" prefWidth="200.0" text="Start" />
+                        <TableColumn fx:id="JHappointmentEnd" prefWidth="200.0" text="End" />
+                        <TableColumn fx:id="JHcustomerId" prefWidth="75.0" text="Customer ID" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
-            <Tab  closable="false" text="Daniel Garcia">
+            <Tab closable="false" text="Daniel Garcia">
                <content>
                   <TableView fx:id="DG_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
                      <columns>
@@ -51,6 +51,86 @@
                         <TableColumn fx:id="LLappointmentStart" prefWidth="200.0" text="Start" />
                         <TableColumn fx:id="LLappointmentEnd" prefWidth="200.0" text="End" />
                         <TableColumn fx:id="LLcustomerId" prefWidth="75.0" text="Customer ID" />
+                     </columns>
+                  </TableView>
+               </content>
+            </Tab>
+
+            <Tab closable="false" text="Joan Newsom">
+               <content>
+                  <TableView fx:id="JN_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
+                     <columns>
+                        <TableColumn fx:id="JNcontactName" prefWidth="150.0" text="Contact Name" />
+                        <TableColumn fx:id="JNappointmentId" prefWidth="100.0" text="Appointment ID" />
+                        <TableColumn fx:id="JNappointmentTitle" prefWidth="150.0" text="Title" />
+                        <TableColumn fx:id="JNappointmentDesc" prefWidth="225.0" text="Description" />
+                        <TableColumn fx:id="JNappointmentStart" prefWidth="200.0" text="Start" />
+                        <TableColumn fx:id="JNappointmentEnd" prefWidth="200.0" text="End" />
+                        <TableColumn fx:id="JNcustomerId" prefWidth="75.0" text="Customer ID" />
+                     </columns>
+                  </TableView>
+               </content>
+            </Tab>
+
+            <Tab closable="false" text="Albert Crow">
+               <content>
+                  <TableView fx:id="AC_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
+                     <columns>
+                        <TableColumn fx:id="ACcontactName" prefWidth="150.0" text="Contact Name" />
+                        <TableColumn fx:id="ACappointmentId" prefWidth="100.0" text="Appointment ID" />
+                        <TableColumn fx:id="ACappointmentTitle" prefWidth="150.0" text="Title" />
+                        <TableColumn fx:id="ACappointmentDesc" prefWidth="225.0" text="Description" />
+                        <TableColumn fx:id="ACappointmentStart" prefWidth="200.0" text="Start" />
+                        <TableColumn fx:id="ACappointmentEnd" prefWidth="200.0" text="End" />
+                        <TableColumn fx:id="ACcustomerId" prefWidth="75.0" text="Customer ID" />
+                     </columns>
+                  </TableView>
+               </content>
+            </Tab>
+
+            <Tab closable="false" text="Michael Williams">
+               <content>
+                  <TableView fx:id="MW_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
+                     <columns>
+                        <TableColumn fx:id="MWcontactName" prefWidth="150.0" text="Contact Name" />
+                        <TableColumn fx:id="MWappointmentId" prefWidth="100.0" text="Appointment ID" />
+                        <TableColumn fx:id="MWappointmentTitle" prefWidth="150.0" text="Title" />
+                        <TableColumn fx:id="MWappointmentDesc" prefWidth="225.0" text="Description" />
+                        <TableColumn fx:id="MWappointmentStart" prefWidth="200.0" text="Start" />
+                        <TableColumn fx:id="MWappointmentEnd" prefWidth="200.0" text="End" />
+                        <TableColumn fx:id="MWcustomerId" prefWidth="75.0" text="Customer ID" />
+                     </columns>
+                  </TableView>
+               </content>
+            </Tab>
+
+            <Tab closable="false" text="Lyndsey Sinclair">
+               <content>
+                  <TableView fx:id="LS_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
+                     <columns>
+                        <TableColumn fx:id="LScontactName" prefWidth="150.0" text="Contact Name" />
+                        <TableColumn fx:id="LSappointmentId" prefWidth="100.0" text="Appointment ID" />
+                        <TableColumn fx:id="LSappointmentTitle" prefWidth="150.0" text="Title" />
+                        <TableColumn fx:id="LSappointmentDesc" prefWidth="225.0" text="Description" />
+                        <TableColumn fx:id="LSappointmentStart" prefWidth="200.0" text="Start" />
+                        <TableColumn fx:id="LSappointmentEnd" prefWidth="200.0" text="End" />
+                        <TableColumn fx:id="LScustomerId" prefWidth="75.0" text="Customer ID" />
+                     </columns>
+                  </TableView>
+               </content>
+            </Tab>
+
+            <Tab closable="false" text="Doug Foreman">
+               <content>
+                  <TableView fx:id="DF_Schedule_Table" prefHeight="490.0" prefWidth="1100.0">
+                     <columns>
+                        <TableColumn fx:id="DFcontactName" prefWidth="150.0" text="Contact Name" />
+                        <TableColumn fx:id="DFappointmentId" prefWidth="100.0" text="Appointment ID" />
+                        <TableColumn fx:id="DFappointmentTitle" prefWidth="150.0" text="Title" />
+                        <TableColumn fx:id="DFappointmentDesc" prefWidth="225.0" text="Description" />
+                        <TableColumn fx:id="DFappointmentStart" prefWidth="200.0" text="Start" />
+                        <TableColumn fx:id="DFappointmentEnd" prefWidth="200.0" text="End" />
+                        <TableColumn fx:id="DFcustomerId" prefWidth="75.0" text="Customer ID" />
                      </columns>
                   </TableView>
                </content>

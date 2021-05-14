@@ -47,8 +47,11 @@ public class CaseFormController implements Initializable {
         customer_choicebox.setItems(customerList);
 
 
-        if (MainController.getModifyCasePersonalInjury() != null){
 
+
+
+        if (MainController.getModifyCasePersonalInjury() != null){
+//            System.out.println(PICaseToModify.getCaseDescription());
             PICaseToModify = MainController.getModifyCasePersonalInjury();
             WCCaseToModify = null;
             headerLbl.setText("Update Case");
@@ -65,6 +68,7 @@ public class CaseFormController implements Initializable {
 
         }
         if (MainController.getModifyCaseWorkersCompensation() != null){
+//            System.out.println(WCCaseToModify.getCaseDescription());
             WCCaseToModify = MainController.getModifyCaseWorkersCompensation();
             PICaseToModify = null;
             headerLbl.setText("Update Case");
@@ -79,7 +83,7 @@ public class CaseFormController implements Initializable {
             customer_choicebox.setValue(getCustomerById(WCCaseToModify.getCaseCustomerId()));
 
         }
-        else{
+        if(MainController.getModifyCaseWorkersCompensation() == null && MainController.getModifyCasePersonalInjury() == null){
             headerLbl.setText("Add Case");
         }
 
@@ -104,7 +108,7 @@ public class CaseFormController implements Initializable {
                                 contact_choicebox.getValue().getContactId(),
                                 op_or_co_textfield.getText()
                         );
-
+                        System.out.println(caseWorkersCompensation.getCaseDescription());
                         if (caseWorkersCompensation.isValid()){
                             PICaseDAO.delete(PICaseToModify.getCaseId());
                             WCCaseDAO.add(caseWorkersCompensation);
@@ -119,18 +123,26 @@ public class CaseFormController implements Initializable {
                         if (op_or_co_textfield.getText().equals("")){
                             op_or_co_textfield.setText("John Doe");
                         }
+                        System.out.println(desc_textarea.getText());
+//                        CasePersonalInjury casePersonalInjury = new CasePersonalInjury(
+//                                customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
+//                                desc_textarea.getText(),
+//                                Date.valueOf(incident_datepicker.getValue()),
+//                                customer_choicebox.getValue().getCustomerId(),
+//                                contact_choicebox.getValue().getContactId(),
+//                                op_or_co_textfield.getText()
+//                        );
 
-                        CasePersonalInjury casePersonalInjury = new CasePersonalInjury(
-                                customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
-                                desc_textarea.getText(),
-                                Date.valueOf(incident_datepicker.getValue()),
-                                customer_choicebox.getValue().getCustomerId(),
-                                contact_choicebox.getValue().getContactId(),
-                                op_or_co_textfield.getText()
-                        );
-                        // TODO: 5/12/2021 Update Case Description not working correctly
-                        if (casePersonalInjury.isValid()){
-                            PICaseDAO.update(casePersonalInjury);
+                        PICaseToModify.setCaseTitle(customer_choicebox.getValue().getCustomerName()+ " vs " + op_or_co_textfield.getText());
+                        PICaseToModify.setCaseDescription(desc_textarea.getText());
+                        PICaseToModify.setIncidentDate(Date.valueOf(incident_datepicker.getValue()));
+                        PICaseToModify.setCaseCustomerId(customer_choicebox.getValue().getCustomerId());
+                        PICaseToModify.setCaseContactId(contact_choicebox.getValue().getContactId());
+                        PICaseToModify.setCaseDefendantName(op_or_co_textfield.getText());
+
+                        if (PICaseToModify.isValid()){
+                            System.out.println(PICaseToModify.getCaseDescription());
+                            PICaseDAO.update(PICaseToModify);
                             GeneralController.changePage(actionEvent,"Main");
 
                         }
@@ -158,17 +170,24 @@ public class CaseFormController implements Initializable {
                         if (op_or_co_textfield.getText().equals("")){
                             op_or_co_textfield.setText("Unknown Co.");
                         }
-                        CaseWorkersCompensation caseWorkersCompensation = new CaseWorkersCompensation(
-                                customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
-                                desc_textarea.getText(),
-                                Date.valueOf(incident_datepicker.getValue()),
-                                customer_choicebox.getValue().getCustomerId(),
-                                contact_choicebox.getValue().getContactId(),
-                                op_or_co_textfield.getText()
-                        );
-                        // TODO: 5/12/2021 Update Case Description not working correctly
-                        if (caseWorkersCompensation.isValid()){
-                            WCCaseDAO.update(caseWorkersCompensation);
+//                        CaseWorkersCompensation caseWorkersCompensation = new CaseWorkersCompensation(
+//                                customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
+//                                desc_textarea.getText(),
+//                                Date.valueOf(incident_datepicker.getValue()),
+//                                customer_choicebox.getValue().getCustomerId(),
+//                                contact_choicebox.getValue().getContactId(),
+//                                op_or_co_textfield.getText()
+//                        );
+
+                        WCCaseToModify.setCaseTitle(customer_choicebox.getValue().getCustomerName()+ " vs " + op_or_co_textfield.getText());
+                        WCCaseToModify.setCaseDescription(desc_textarea.getText());
+                        WCCaseToModify.setIncidentDate(Date.valueOf(incident_datepicker.getValue()));
+                        WCCaseToModify.setCaseCustomerId(customer_choicebox.getValue().getCustomerId());
+                        WCCaseToModify.setCaseContactId(contact_choicebox.getValue().getContactId());
+                        WCCaseToModify.setCaseCompanyName(op_or_co_textfield.getText());
+
+                        if (WCCaseToModify.isValid()){
+                            WCCaseDAO.update(WCCaseToModify);
                             GeneralController.changePage(actionEvent,"Main");
                         }
 
@@ -236,7 +255,7 @@ public class CaseFormController implements Initializable {
                         if (op_or_co_textfield.getText().equals("")){
                             op_or_co_textfield.setText("John Doe");
                         }
-
+                        System.out.println(desc_textarea.getText());
                         CasePersonalInjury casePersonalInjury = new CasePersonalInjury(
                                 customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
                                 desc_textarea.getText(),
@@ -245,7 +264,7 @@ public class CaseFormController implements Initializable {
                                 contact_choicebox.getValue().getContactId(),
                                 op_or_co_textfield.getText()
                         );
-
+                        System.out.println(casePersonalInjury.getCaseDescription());
                         if (casePersonalInjury.isValid()){
                             PICaseDAO.add(casePersonalInjury);
                             GeneralController.changePage(actionEvent,"Main");

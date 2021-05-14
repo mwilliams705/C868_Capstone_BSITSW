@@ -261,9 +261,17 @@
                      <children>
                         <Pane layoutX="400.0" layoutY="111.0" prefHeight="300.0" prefWidth="300.0">
                            <children>
+
+
+
+
                               <Button layoutX="82.0" layoutY="66.0" mnemonicParsing="false" onAction="#openApptsByTypeReport" text="Appointments By Type" />
-                              <Button layoutX="76.0" layoutY="138.0" mnemonicParsing="false" onAction="#openContactScheduleReport" text="Contact Schedule Report" />
-                              <Button layoutX="102.0" layoutY="209.0" mnemonicParsing="false" onAction="#OpenCustomReport" text="Custom Report" />
+                              <Button layoutX="76.0" layoutY="138.0" mnemonicParsing="false" onAction="#openContactScheduleReport" text="Attorney Schedule Report" />
+                              <Button layoutX="54.0" layoutY="209.0" mnemonicParsing="false" onAction="#OpenTotalApptsByCustomer" text="Total Appointments By Customer" />
+
+
+
+
                            </children>
                         </Pane>
                      </children></AnchorPane>

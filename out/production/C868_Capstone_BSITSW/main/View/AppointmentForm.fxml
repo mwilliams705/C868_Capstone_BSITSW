@@ -89,7 +89,7 @@
                 </VBox>
                 <VBox layoutX="10.0" layoutY="10.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="380.0" prefWidth="450.0">
                     <children>
-                        <Label fx:id="contactLbl" text="Contact">
+                        <Label fx:id="contactLbl" text="Attorney">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -112,7 +112,7 @@
                   </Label>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <RadioButton fx:id="physical_radio" mnemonicParsing="false" onAction="#physical_selected" selected="true" text="Physical">
+                                <RadioButton fx:id="depo_radio" mnemonicParsing="false" selected="true" text="Deposition">
                                     <HBox.margin>
                                         <Insets left="20.0" top="20.0" />
                                     </HBox.margin>
@@ -120,7 +120,7 @@
                                         <ToggleGroup fx:id="in_or_out" />
                                     </toggleGroup>
                                 </RadioButton>
-                                <RadioButton fx:id="bloodwork_radio" layoutX="179.0" layoutY="50.0" mnemonicParsing="false" onAction="#bloodwork_selected" text="Bloodwork" toggleGroup="$in_or_out">
+                                <RadioButton fx:id="info_radio" layoutX="179.0" layoutY="50.0" mnemonicParsing="false" text="Info Gathering" toggleGroup="$in_or_out">
                                     <HBox.margin>
                                         <Insets left="50.0" top="20.0" />
                                     </HBox.margin>

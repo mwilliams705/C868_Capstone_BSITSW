@@ -6,6 +6,9 @@ import java.sql.Timestamp;
 public class CaseWorkersCompensation extends Case {
     private String caseCompanyName;
 
+    public CaseWorkersCompensation() {
+    }
+
     public CaseWorkersCompensation(int caseId, String caseTitle, String caseDescription, Date incidentDate, Timestamp intakeDate, int caseCustomerId, int caseContactId, String caseCompanyName) {
         super(caseId, caseTitle, caseDescription, incidentDate, intakeDate, caseCustomerId, caseContactId);
         this.caseCompanyName = caseCompanyName;

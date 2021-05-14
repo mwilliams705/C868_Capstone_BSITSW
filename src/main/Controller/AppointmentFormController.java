@@ -36,8 +36,8 @@ public class AppointmentFormController implements Initializable {
     public DatePicker end_datepicker;
     public ChoiceBox<LocalTime> end_time_combobox;
     public ChoiceBox<Customer> customer_choicebox;
-    public RadioButton physical_radio;
-    public RadioButton bloodwork_radio;
+    public RadioButton depo_radio;
+    public RadioButton info_radio;
     public Label contactLbl;
 
     public Label customerLbl;
@@ -47,6 +47,7 @@ public class AppointmentFormController implements Initializable {
     private final ObservableList<Contact> contactList = FXCollections.observableArrayList();
 
     public static Appointment appointmentToModify;
+
 
 
     @Override
@@ -117,14 +118,14 @@ public class AppointmentFormController implements Initializable {
 
                         if (appointmentToModify != null) {
 
-                            if (physical_radio.isSelected()) {
+                            if (depo_radio.isSelected()) {
                                 Appointment appointment = new Appointment(
                                         Integer.parseInt(id_textfield.getText()),
                                         title_textfield.getText(),
                                         desc_textarea.getText(),
                                         location_textfield.getText(),
                                         contact_choicebox.getValue().getContactId(),
-                                        "Physical",
+                                        "Deposition",
                                         Timestamp.valueOf(start),
                                         Timestamp.valueOf(end),
                                         customer_choicebox.getValue().getCustomerId()
@@ -137,14 +138,14 @@ public class AppointmentFormController implements Initializable {
                                     GeneralController.changePageFromAppointment(actionEvent, "Main");
                                 }
                             }
-                            if (bloodwork_radio.isSelected()) {
+                            if (info_radio.isSelected()) {
                                 Appointment appointment = new Appointment(
                                         Integer.parseInt(id_textfield.getText()),
                                         title_textfield.getText(),
                                         desc_textarea.getText(),
                                         location_textfield.getText(),
                                         contact_choicebox.getValue().getContactId(),
-                                        "Bloodwork",
+                                        "Info Gathering",
                                         Timestamp.valueOf(start),
                                         Timestamp.valueOf(end),
                                         customer_choicebox.getValue().getCustomerId()
@@ -159,14 +160,14 @@ public class AppointmentFormController implements Initializable {
                             }
                         } else {
 
-                            if (physical_radio.isSelected()) {
+                            if (depo_radio.isSelected()) {
 //
                                 Appointment appointment = new Appointment(
                                         title_textfield.getText(),
                                         desc_textarea.getText(),
                                         location_textfield.getText(),
                                         contact_choicebox.getValue().getContactId(),
-                                        "Physical",
+                                        "Deposition",
                                         Timestamp.valueOf(start),
                                         Timestamp.valueOf(end),
                                         customer_choicebox.getValue().getCustomerId()
@@ -178,13 +179,13 @@ public class AppointmentFormController implements Initializable {
                                     GeneralController.changePageFromAppointment(actionEvent, "Main");
                                 }
                             }
-                            if (bloodwork_radio.isSelected()) {
+                            if (info_radio.isSelected()) {
                                 Appointment appointment = new Appointment(
                                         title_textfield.getText(),
                                         desc_textarea.getText(),
                                         location_textfield.getText(),
                                         contact_choicebox.getValue().getContactId(),
-                                        "Bloodwork",
+                                        "Info Gathering",
                                         Timestamp.valueOf(start),
                                         Timestamp.valueOf(end),
                                         customer_choicebox.getValue().getCustomerId()
@@ -220,11 +221,6 @@ public class AppointmentFormController implements Initializable {
         GeneralController.changePage(actionEvent,"Main");
     }
 
-    public void physical_selected(ActionEvent actionEvent) {
-    }
-
-    public void bloodwork_selected(ActionEvent actionEvent) {
-    }
 
     public static Appointment getAppointmentToModify() {
         return appointmentToModify;

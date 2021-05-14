@@ -14,6 +14,10 @@ public abstract class Case {
     private int caseCustomerId;
     private int caseContactId;
 
+    public Case(){
+
+    }
+
     public Case(int caseId, String caseTitle, String caseDescription, Date incidentDate, Timestamp intakeDate, int caseCustomerId, int caseContactId) {
         this.caseId = caseId;
         this.caseTitle = caseTitle;

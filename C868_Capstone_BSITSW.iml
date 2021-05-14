@@ -37,5 +37,7 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="junit:junit:4.13.1" level="project" />
     <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="org.testfx:testfx-core:4.0.16-alpha" level="project" />
+    <orderEntry type="library" name="org.testfx:testfx-junit:4.0.14-alpha" level="project" />
   </component>
 </module>
