@@ -4,6 +4,7 @@ import main.Exception.ValidationException;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public abstract class Case {
     private int caseId;
@@ -96,7 +97,12 @@ public abstract class Case {
         if (getCaseDescription().length() > 500){
             throw new ValidationException("Case description can be no more than 500 characters in length");
         }
+        if (getIncidentDate().after(Date.valueOf(LocalDate.now()))){
+            throw new ValidationException("Incident date cannot be in the future");
+        }
         return true;
     }
+
+
 }
 

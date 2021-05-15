@@ -65,6 +65,12 @@ public class CaseFormController implements Initializable {
             incident_datepicker.setValue(PICaseToModify.getIncidentDate().toLocalDate());
             customer_choicebox.setValue(getCustomerById(PICaseToModify.getCaseCustomerId()));
 
+            if (wc_radio.isSelected()){
+                op_or_co_label.setText("Opposing Company");
+            }
+            if (pi_radio.isSelected()){
+                op_or_co_label.setText("Opposing Party");
+            }
 
         }
         if (MainController.getModifyCaseWorkersCompensation() != null){
@@ -82,9 +88,22 @@ public class CaseFormController implements Initializable {
             incident_datepicker.setValue(WCCaseToModify.getIncidentDate().toLocalDate());
             customer_choicebox.setValue(getCustomerById(WCCaseToModify.getCaseCustomerId()));
 
+            if (wc_radio.isSelected()){
+                op_or_co_label.setText("Opposing Company");
+            }
+            if (pi_radio.isSelected()){
+                op_or_co_label.setText("Opposing Party");
+            }
+
         }
         if(MainController.getModifyCaseWorkersCompensation() == null && MainController.getModifyCasePersonalInjury() == null){
             headerLbl.setText("Add Case");
+            if (wc_radio.isSelected()){
+                op_or_co_label.setText("Opposing Company");
+            }
+            if (pi_radio.isSelected()){
+                op_or_co_label.setText("Opposing Party");
+            }
         }
 
     }
@@ -124,14 +143,6 @@ public class CaseFormController implements Initializable {
                             op_or_co_textfield.setText("John Doe");
                         }
                         System.out.println(desc_textarea.getText());
-//                        CasePersonalInjury casePersonalInjury = new CasePersonalInjury(
-//                                customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
-//                                desc_textarea.getText(),
-//                                Date.valueOf(incident_datepicker.getValue()),
-//                                customer_choicebox.getValue().getCustomerId(),
-//                                contact_choicebox.getValue().getContactId(),
-//                                op_or_co_textfield.getText()
-//                        );
 
                         PICaseToModify.setCaseTitle(customer_choicebox.getValue().getCustomerName()+ " vs " + op_or_co_textfield.getText());
                         PICaseToModify.setCaseDescription(desc_textarea.getText());
@@ -170,14 +181,7 @@ public class CaseFormController implements Initializable {
                         if (op_or_co_textfield.getText().equals("")){
                             op_or_co_textfield.setText("Unknown Co.");
                         }
-//                        CaseWorkersCompensation caseWorkersCompensation = new CaseWorkersCompensation(
-//                                customer_choicebox.getValue().getCustomerName() + " vs " + op_or_co_textfield.getText(),
-//                                desc_textarea.getText(),
-//                                Date.valueOf(incident_datepicker.getValue()),
-//                                customer_choicebox.getValue().getCustomerId(),
-//                                contact_choicebox.getValue().getContactId(),
-//                                op_or_co_textfield.getText()
-//                        );
+
 
                         WCCaseToModify.setCaseTitle(customer_choicebox.getValue().getCustomerName()+ " vs " + op_or_co_textfield.getText());
                         WCCaseToModify.setCaseDescription(desc_textarea.getText());
@@ -337,5 +341,13 @@ public class CaseFormController implements Initializable {
 
 
         return true;
+    }
+
+    public void wc_selected(ActionEvent actionEvent) {
+        op_or_co_label.setText("Opposing Company");
+    }
+
+    public void pi_selected(ActionEvent actionEvent) {
+        op_or_co_label.setText("Opposing Party");
     }
 }

@@ -40,6 +40,7 @@ public class DBConnector {
     public static void closeConnection(){
         try {
             conn.close();
+            conn = null;
         }catch (Exception ignored){
 
         }

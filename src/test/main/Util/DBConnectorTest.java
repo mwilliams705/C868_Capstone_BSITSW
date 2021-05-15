@@ -39,6 +39,6 @@ class DBConnectorTest {
     void canCloseConnection() {
         System.out.println("Test Closing Connection");
         DBConnector.closeConnection();
-        assertNull(c);
+        assertNull(DBConnector.getConnection());
     }
 }
