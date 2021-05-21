@@ -189,3 +189,4 @@ Login Attempt [User: test | Date: 2021-05-14 | Timestamp: 2021-05-14 09:51:38.93
 Login Attempt [User: test | Date: 2021-05-14 | Timestamp: 2021-05-14 10:08:35.3947541 | Login Success]
 Login Attempt [User: test | Date: 2021-05-14 | Timestamp: 2021-05-14 10:09:45.7557551 | Login Success]
 Login Attempt [User: test | Date: 2021-05-14 | Timestamp: 2021-05-14 16:05:50.3944484 | Login Success]
+Login Attempt [User: test | Date: 2021-05-15 | Timestamp: 2021-05-15 11:14:34.8885041 | Login Success]

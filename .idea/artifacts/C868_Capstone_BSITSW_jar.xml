@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="C868_Capstone_BSITSW:jar">
+  <artifact type="jar" build-on-make="true" name="C868_Capstone_BSITSW:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/C868_Capstone_BSITSW_jar</output-path>
     <root id="archive" name="C868_Capstone_BSITSW.jar">
       <element id="module-output" name="C868_Capstone_BSITSW" />

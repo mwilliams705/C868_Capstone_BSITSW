@@ -1,7 +1,6 @@
--- auto-generated definition
 create table appointments
 (
-    Appointment_ID  int(10) auto_increment
+    Appointment_ID  int auto_increment
         primary key,
     Title           varchar(50)                         not null,
     Description     varchar(50)                         null,
@@ -13,17 +12,16 @@ create table appointments
     Created_By      varchar(50)                         null,
     Last_Update     timestamp default CURRENT_TIMESTAMP not null,
     Last_Updated_By varchar(50)                         null,
-    Customer_ID     int(10)                             null,
-    User_ID         int(10)                             null,
-    Contact_ID      int(10)                             null,
+    Customer_ID     int                                 null,
+    User_ID         int                                 null,
+    Contact_ID      int                                 null,
     constraint appointments_ibfk_1
         foreign key (Customer_ID) references customers (Customer_ID),
     constraint appointments_ibfk_2
         foreign key (User_ID) references users (User_ID),
     constraint appointments_ibfk_3
         foreign key (Contact_ID) references contacts (Contact_ID)
-)
-    charset = utf8mb4;
+);
 
 create index Contact_ID
     on appointments (Contact_ID);
@@ -33,3 +31,4 @@ create index Customer_ID
 
 create index User_ID
     on appointments (User_ID);
+

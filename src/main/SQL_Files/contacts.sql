@@ -1,9 +1,10 @@
--- auto-generated definition
 create table contacts
 (
-    Contact_ID   int(10) auto_increment
+    Contact_ID   int auto_increment
         primary key,
     Contact_Name varchar(50) not null,
     Email        varchar(50) not null
-)
-    charset = utf8mb4;
+);
+
+create index contact_id
+    on contacts (Contact_ID);
